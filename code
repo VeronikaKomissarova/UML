@@ -9,10 +9,13 @@
 
 [Клиент]->[Iterator]
 [Клиент]->[IterableCollection]
-[Iterator]^-[ConcreteIterator]
-[IterableCollection]^-[ConcreteCollection]
+[Iterator]^-.-[ConcreteIterator]
+[IterableCollection]^-.-[ConcreteCollection]
 
 [Iterator]-[note: определяет \n интерфейс для обхода \n элементов коллекции{bg:wheat}]
 [IterableCollection]-[note:определяет интерфейс \n для создания \n объекта-итератора {bg:wheat}]
 [ConcreteIterator]-[note: конкретная реализация \n итератора для обхода {bg:wheat}]
-[ConcreteCollection]-[note:конкретная реализация Коллекции. \n Хранит элементы, которые \n надо будет перебирать \n сигнатура метода возвращает \n интерфейс итератора. Это \n позволяет клиенту не зависеть \n от конкретных классов итераторов {bg:wheat}]
+
+[ConcreteCollection]-[note: конкретная реализация Коллекции.\n возвращает экземпляр итератора,\n связав его с текущим объектом коллекции. {bg:wheat}]
+[ConcreteIterator]->[ConcreteCollection]
+[ConcreteCollection]-.->[ConcreteIterator]
